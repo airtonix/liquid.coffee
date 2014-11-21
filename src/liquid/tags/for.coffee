@@ -13,6 +13,7 @@
 #
 # Liquid Templates
 #
+_ = require 'lodash'
 Liquid = require('../../liquid')
 
 # "For" iterates over an array or collection.
@@ -80,7 +81,7 @@ class Liquid.Tags.For extends Liquid.Block
 
     collection = context.get(@collectionName)
 
-    return '' unless Array.isArray(collection)
+    collection = _.pairs collection unless Array.isArray(collection)
 
     from = if @attributes['offset'] is 'continue'
      context.registers.for[@name]
